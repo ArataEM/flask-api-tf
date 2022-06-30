@@ -1,4 +1,4 @@
-var "profile" {
+variable "profile" {
   type = string
   default = "devops"
 }
