@@ -18,3 +18,8 @@ resource "aws_instance" "flask-api" {
 output "instance_ip_addr" {
   value = aws_instance.flask-api.public_ip
 }
+
+output "instance_dns_addr" {
+  value = aws_instance.flask-api.public_dns
+}
+  
