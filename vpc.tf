@@ -10,7 +10,7 @@ resource "aws_vpc" "flask-api" {
 resource "aws_subnet" "flask-api-public1" {
   vpc_id     = aws_vpc.flask-api.id
   cidr_block = "10.1.1.0/24"
-  availability_zone = "eu-central-1a"
+  availability_zone = var.availability_zones[0]
   map_public_ip_on_launch = true
 
   tags = {
@@ -21,7 +21,7 @@ resource "aws_subnet" "flask-api-public1" {
 resource "aws_subnet" "flask-api-public2" {
   vpc_id     = aws_vpc.flask-api.id
   cidr_block = "10.1.2.0/24"
-  availability_zone = "eu-central-1b"
+  availability_zone = var.availability_zones[1]
   map_public_ip_on_launch = true
 
   tags = {
@@ -32,7 +32,7 @@ resource "aws_subnet" "flask-api-public2" {
 resource "aws_subnet" "flask-api-private1" {
   vpc_id     = aws_vpc.flask-api.id
   cidr_block = "10.1.3.0/24"
-  availability_zone = "eu-central-1a"
+  availability_zone = var.availability_zones[0]
 
   tags = {
     Name = "flask-api-private1"
@@ -42,7 +42,7 @@ resource "aws_subnet" "flask-api-private1" {
 resource "aws_subnet" "flask-api-private2" {
   vpc_id     = aws_vpc.flask-api.id
   cidr_block = "10.1.4.0/24"
-  availability_zone = "eu-central-1b"
+  availability_zone = var.availability_zones[1]
 
   tags = {
     Name = "flask-api-private2"

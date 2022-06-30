@@ -1,10 +1,10 @@
 resource "aws_key_pair" "flask-api-key" {
   key_name   = "flask-api-key"
-  public_key = file("~/.ssh/id_ed25519.pub")
+  public_key = file(var.public_key)
 }
 
 resource "aws_instance" "flask-api" {
-  ami           = "ami-065deacbcaac64cf2"
+  ami           = var.image_id
   instance_type = "t2.micro"
   key_name = aws_key_pair.flask-api-key.key_name
   subnet_id = aws_subnet.flask-api-public1.id
