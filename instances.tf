@@ -12,6 +12,8 @@ resource "aws_instance" "flask-api" {
 
   tags = {
     Name = "flask-api"
+    Ansible = "true"
+    Task = "web_server"
   }
 }
 
