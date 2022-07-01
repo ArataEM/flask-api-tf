@@ -15,9 +15,8 @@ resource "aws_db_instance" "flask-api-db" {
   instance_class         = "db.t2.micro"
   db_subnet_group_name   = aws_db_subnet_group.flask-api-db.name
   vpc_security_group_ids = [aws_security_group.flask-api-db.id]
-  #db_name                = "flaskapi"
-  username               = "devops"
-  password               = "devops123"
+  username               = var.rds_login
+  password               = var.rds_password
   skip_final_snapshot    = true
 }
 

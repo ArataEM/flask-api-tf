@@ -18,4 +18,12 @@ variable "public_key" {
   default = "~/.ssh/id_ed25519.pub"
 }
 
+variable "rds_login" {
+  type = string
+  default = "devops"
+}
 
+variable "rds_password" {
+  type = string
+  default = "devops"
+}
