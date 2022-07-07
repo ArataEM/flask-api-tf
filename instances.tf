@@ -25,4 +25,3 @@ output "instance_ip_addr" {
 output "instance_dns_addr" {
   value = aws_instance.flask-api.*.public_dns
 }
-  
