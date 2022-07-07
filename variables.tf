@@ -13,6 +13,11 @@ variable "image_id" {
   default = "ami-065deacbcaac64cf2"
 }
 
+variable "replicas" {
+  type = number
+  default = 1
+}
+
 variable "public_key" {
   type = string
   default = "~/.ssh/id_ed25519.pub"

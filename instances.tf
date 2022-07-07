@@ -4,24 +4,25 @@ resource "aws_key_pair" "flask-api-key" {
 }
 
 resource "aws_instance" "flask-api" {
-  ami           = var.image_id
-  instance_type = "t2.micro"
-  key_name = aws_key_pair.flask-api-key.key_name
-  subnet_id = aws_subnet.flask-api-public1.id
+  count                  = var.replicas
+  ami                    = var.image_id
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.flask-api-key.key_name
+  subnet_id              = aws_subnet.flask-api-public1.id
   vpc_security_group_ids = [aws_security_group.flask-api-web.id]
 
   tags = {
-    Name = "flask-api"
+    Name = "flask-api-${count.index + 1}"
     Ansible = "true"
     Task = "web_server"
   }
 }
 
 output "instance_ip_addr" {
-  value = aws_instance.flask-api.public_ip
+  value = aws_instance.flask-api.*.public_ip
 }
 
 output "instance_dns_addr" {
-  value = aws_instance.flask-api.public_dns
+  value = aws_instance.flask-api.*.public_dns
 }
   
